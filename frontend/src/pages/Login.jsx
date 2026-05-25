@@ -119,7 +119,8 @@ const Login = () => {
               className="form-control"
               value={formData.email}
               onChange={handleChange}
-              autoComplete="off"
+              readOnly
+              onFocus={(e) => e.target.removeAttribute('readonly')}
               onKeyDown={(e) => { if (e.key === 'Enter' && !formData.password) { e.preventDefault(); passwordRef.current?.focus() } }}
               style={{ background: loginDark ? '#0f111a' : '#fff', borderColor: loginDark ? '#374151' : undefined, color: textColor }}
             />
@@ -134,7 +135,8 @@ const Login = () => {
               className="form-control"
               value={formData.password}
               onChange={handleChange}
-              autoComplete="new-password"
+              readOnly
+              onFocus={(e) => e.target.removeAttribute('readonly')}
               style={{ background: loginDark ? '#0f111a' : '#fff', borderColor: loginDark ? '#374151' : undefined, color: textColor }}
             />
           </div>
