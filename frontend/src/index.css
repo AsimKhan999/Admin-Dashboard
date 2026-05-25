@@ -604,6 +604,11 @@ img {
 .chart-wrap svg rect { outline: none; }
 .recharts-wrapper, .recharts-surface, .recharts-wrapper * { outline: none !important; }
 .recharts-tooltip-wrapper:focus, .recharts-tooltip-wrapper * { outline: none !important; }
+.recharts-surface { -webkit-tap-highlight-color: transparent !important; }
+.recharts-bar-rectangle { cursor: default !important; }
+.recharts-bar-rectangle:active { opacity: 1 !important; }
+.recharts-layer { -webkit-tap-highlight-color: transparent !important; }
+.recharts-wrapper { -webkit-tap-highlight-color: transparent !important; touch-action: manipulation; }
 
 .chart-wrap .recharts-default-tooltip {
   border-radius: 8px !important;
