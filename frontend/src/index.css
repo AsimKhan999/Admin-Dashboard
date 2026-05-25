@@ -1374,7 +1374,7 @@ input[type=range] {
   .topbar { padding: 0 8px; gap: 4px; }
   .topbar-actions { gap: 4px; }
   .topbar-icon-btn { width: 32px; height: 32px; }
-  .topbar-clock { display: none; }
+  .topbar-clock { font-size: 9px; padding: 2px 4px; }
   .topbar-title { font-size: 12px; max-width: 110px; }
 }
 
