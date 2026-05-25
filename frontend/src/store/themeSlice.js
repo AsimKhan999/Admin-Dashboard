@@ -25,6 +25,7 @@ const themeSlice = createSlice({
       state.accentColor = action.payload
       localStorage.setItem('accent', action.payload)
       document.documentElement.style.setProperty('--accent', action.payload)
+      document.documentElement.style.setProperty('--accent-dim', `${action.payload}26`)
     },
     setTimezone: (state, action) => {
       state.timezone = action.payload

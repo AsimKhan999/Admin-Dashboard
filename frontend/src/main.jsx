@@ -12,6 +12,11 @@ import store from './store/store.js'
 if (localStorage.getItem('theme') === 'dark') {
   document.body.classList.add('dark-mode')
 }
+const savedAccent = localStorage.getItem('accent')
+if (savedAccent) {
+  document.documentElement.style.setProperty('--accent', savedAccent)
+  document.documentElement.style.setProperty('--accent-dim', `${savedAccent}26`)
+}
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
