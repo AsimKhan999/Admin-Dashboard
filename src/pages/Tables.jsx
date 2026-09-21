@@ -24,6 +24,7 @@ const Tables = () => {
   const [showAddModal, setShowAddModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
   const [editUser, setEditUser] = useState(null)
+  const [pendingDelete, setPendingDelete] = useState(null)
   const [newUser, setNewUser] = useState({ name: '', role: 'Viewer', department: '', salary: '', joined: '', status: 'Active' })
 
   useEffect(() => {
@@ -115,13 +116,12 @@ const Tables = () => {
     toast.success('User updated!')
   }
 
-  const handleDeleteUser = (id, name) => {
-    if (window.confirm(`Delete user "${name}"?`)) {
-      const updated = tableData.filter(u => u.id !== id)
-      setTableData(updated)
-      localStorage.setItem('tableData', JSON.stringify(updated))
-      toast.success(`User "${name}" deleted!`)
-    }
+  const handleDeleteUser = () => {
+    const updated = tableData.filter(u => u.id !== pendingDelete.id)
+    setTableData(updated)
+    localStorage.setItem('tableData', JSON.stringify(updated))
+    toast.success(`User "${pendingDelete.name}" deleted!`)
+    setPendingDelete(null)
   }
 
   const handleExportCSV = () => {
@@ -196,7 +196,7 @@ const Tables = () => {
                   <td className="center">
                     <div className="action-btns">
                       <button className="btn-action btn-action-edit" title="Edit" onClick={() => { setEditUser({ ...row }); setShowEditModal(true) }}><FiEdit size={14} /></button>
-                      <button className="btn-action btn-action-delete" title="Delete" onClick={() => handleDeleteUser(row.id, row.name)}><FiTrash2 size={14} /></button>
+                      <button className="btn-action btn-action-delete" title="Delete" onClick={() => setPendingDelete(row)}><FiTrash2 size={14} /></button>
                     </div>
                   </td>
                 </tr>
@@ -336,6 +336,24 @@ const Tables = () => {
             <div className="modal-footer">
               <button className="btn btn-outline btn-sm" onClick={() => setShowEditModal(false)}>Cancel</button>
               <button className="btn btn-primary btn-sm" onClick={handleEditUser} disabled={!editUser.name.trim()}>Save Changes</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {pendingDelete && (
+        <div className="modal-overlay" onClick={() => setPendingDelete(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <div className="card-title">Delete User</div>
+              <button className="modal-close" onClick={() => setPendingDelete(null)} aria-label="Close delete confirmation"><FiX size={18} /></button>
+            </div>
+            <div className="modal-body">
+              <p>Are you sure you want to delete <strong>{pendingDelete.name}</strong>? This action cannot be undone.</p>
+            </div>
+            <div className="modal-footer">
+              <button className="btn btn-outline btn-sm" onClick={() => setPendingDelete(null)}>Cancel</button>
+              <button className="btn btn-danger btn-sm" onClick={handleDeleteUser}>Delete User</button>
             </div>
           </div>
         </div>

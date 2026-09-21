@@ -1,9 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+const timezoneMap = {
+  UTC: 'UTC', EST: 'America/New_York', PST: 'America/Los_Angeles',
+  IST: 'Asia/Kolkata', CET: 'Europe/Berlin', CST: 'Asia/Shanghai',
+  JST: 'Asia/Tokyo', PKT: 'Asia/Karachi',
+}
+const localTimezone = Object.entries(timezoneMap).find(([, value]) => value === Intl.DateTimeFormat().resolvedOptions().timeZone)?.[0] || 'UTC'
+
 const initialState = {
   isDarkMode: localStorage.getItem('theme') === 'dark',
   accentColor: localStorage.getItem('accent') || '#38CE3C',
-  timezone: localStorage.getItem('timezone') || 'UTC',
+  timezone: localStorage.getItem('timezone') || localTimezone,
   hour24: localStorage.getItem('hour24') === 'true',
 }
 

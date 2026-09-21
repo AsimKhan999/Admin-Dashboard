@@ -44,7 +44,7 @@ const Topbar = ({
 
         <div className="topbar-clock" title={timezone}>
           <FiClock size={13} />
-          <span>{currentTime.toLocaleTimeString('en-US', { timeZone: timezoneMap[timezone] || 'UTC', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !hour24 })}</span>
+          <span>{currentTime.toLocaleTimeString('en-US', { timeZone: timezoneMap[timezone] || 'UTC', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: hour24 ? 'h23' : 'h12' })}</span>
         </div>
 
         <button className="topbar-icon-btn" onClick={onToggleTheme} title="Toggle Theme">
