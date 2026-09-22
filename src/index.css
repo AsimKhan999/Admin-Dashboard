@@ -1376,6 +1376,17 @@ input[type=range] {
   .topbar-icon-btn { width: 32px; height: 32px; }
   .topbar-clock { font-size: 9px; padding: 2px 4px; }
   .topbar-title { font-size: 12px; max-width: 110px; }
+  .notification-dropdown {
+    position: fixed;
+    top: calc(var(--topbar-height) + 8px);
+    left: 58%;
+    right: auto;
+    width: min(280px, calc(100vw - 32px));
+    transform: translateX(-50%) translateY(10px);
+  }
+  .notification-dropdown.show {
+    transform: translateX(-50%);
+  }
 }
 
 /* Dark Mode Overrides */

@@ -56,7 +56,7 @@ const Topbar = ({
             <FiBell size={15} />
           </button>
           {notifOpen && (
-            <div className="topbar-dropdown show">
+            <div className="topbar-dropdown notification-dropdown show">
               <div className="dropdown-header">
                 <h4>Notifications</h4>
                 <button className="btn-link btn-link-sm">Clear all</button>
